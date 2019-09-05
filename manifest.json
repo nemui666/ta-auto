@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+
+  "name": "TA-Manager拡張機能",
+  "short_name": "TA-Manager拡張機能",
+  "description": "（１）前日コピーを一括で行います。（２）工数 (分)の自動セットを行います。",
+  "version": "1.4",
+  "author": "XXXXX",
+  "permissions": [
+    "https://www.tamgr.com/*",
+    "contextMenus",
+    "tabs"
+  ],
+  "background": {
+    "scripts": ["./bg.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.tamgr.com/*"],
+      "js": [
+        "./jquery-3.1.1.min.js",
+        "./ta-manager.js"]
+    }
+  ]
+}
