@@ -92,4 +92,39 @@ $(document).ready(function(){
         e.blur()
       }
     }
+
+
+
+    var accumulation = () => {
+
+      $(".accumulation").remove();
+
+      $(".borderless.border-bottom").each(function(index,element){
+        $(element).append("<th class='accumulation'>累積時間</th>");
+      })
+
+      var total = 0;
+      $("#attendance-table-body-bp tr").each(function(index,element){
+        //e.append('<td>項目３</td>')
+
+        var time = element.cells[5].innerText.split(":");
+        if (time) {
+          var mints = Number(time[0]) * 60 + Number(time[1]);
+          if (!isNaN(mints)){
+            total = total + mints;
+
+            var hh = Math.floor(total/60);
+            var mm = Math.floor(total%60);
+            var jikan = hh+":"+mm
+            $(element).append("<td class='accumulation'>"+jikan+"</td>");
+          } else {
+            $(element).append("<td class='accumulation'></td>");
+          }
+
+        }
+
+      })
+    }
+
+    accumulation();
 });
